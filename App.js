@@ -7,6 +7,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ManageExpense from './screens/ManageExpense';
 import RecentExpenses from './screens/RecentExpenses';
 import AllExpenses from './screens/AllExpenses';
+// Constants
+import { GlobalStyles } from './constants/styles';
+// IoniIcons (from vector icons API) import
+import { Ionicons } from '@expo/vector-icons';
 
 // Navigators initiallization
 const Stack = createNativeStackNavigator();
@@ -16,11 +20,38 @@ const BottomTabs = createBottomTabNavigator();
 const ExpensesOverview = () => {
 	// ExpensesOverview render
 	return (
-		<BottomTabs.Navigator>
+		<BottomTabs.Navigator
+			screenOptions={{
+				headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
+				headerTintColor: 'white', // Changing the title color of the header to white
+				tabBarStyle: { backgroundColor: GlobalStyles.colors.primary500 },
+				tabBarActiveTintColor: GlobalStyles.colors.accent500, // To emphasize the actived bottom
+				headerTitleAlign: 'center', // To align the title to the center
+			}}>
 			{/* First Screen - Recent Expenses */}
-			<BottomTabs.Screen name='RecentExpenses' component={RecentExpenses} />
+			<BottomTabs.Screen
+				name='RecentExpenses'
+				component={RecentExpenses}
+				options={{
+					title: 'Recent Expenses', // To set new title on the headerss
+					tabBarLabel: 'Recent', // To set new label to the tab
+					tabBarIcon: ({ color, size }) => (
+						<Ionicons name='hourglass' size={size} color={color} />
+					), // To set the icon of the tab
+				}}
+			/>
 			{/* Second Screen - All Expenses */}
-			<BottomTabs.Screen name='AllExpenses' component={AllExpenses} />
+			<BottomTabs.Screen
+				name='AllExpenses'
+				component={AllExpenses}
+				options={{
+					title: 'All Expenses',
+					tabBarLabel: 'All',
+					tabBarIcon: ({ color, size }) => (
+						<Ionicons name='calendar' size={size} color={color} />
+					),
+				}}
+			/>
 		</BottomTabs.Navigator>
 	);
 };
@@ -36,7 +67,14 @@ export default function App() {
 				{/* The main navigator */}
 				<Stack.Navigator>
 					{/* First Screen - Nested BottomTab Navigator*/}
-					<Stack.Screen name='ExpensesOverview' component={ExpensesOverview} />
+					<Stack.Screen
+						name='ExpensesOverview'
+						component={ExpensesOverview}
+						options={{
+							// Omit the default header of the navigator
+							headerShown: false,
+						}}
+					/>
 					{/* Second Screen - ManageExpense */}
 					<Stack.Screen name='ManageExpense' component={ManageExpense} />
 				</Stack.Navigator>
