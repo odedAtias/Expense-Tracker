@@ -1,10 +1,10 @@
 // RN Core components
 import { FlatList, Text } from 'react-native';
+// Custom components imports
+import ExpenseItem from './ExpenseItem';
 
 // renderItem function
-const renderExpenseItem = itemData => {
-	return <Text>{itemData.item.description}</Text>;
-};
+const renderExpenseItem = itemData => <ExpenseItem {...itemData.item} />;
 
 // ExpensesList component
 const ExpensesList = ({ expenses }) => {

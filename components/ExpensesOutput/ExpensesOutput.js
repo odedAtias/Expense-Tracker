@@ -38,6 +38,24 @@ const DUMMY_EXPENSES = [
 		amount: 18.99,
 		date: new Date('2022-02-18'),
 	},
+	{
+		id: 'e6',
+		description: 'Some bananas',
+		amount: 5.99,
+		date: new Date('2021-12-01'),
+	},
+	{
+		id: 'e7',
+		description: 'A book',
+		amount: 14.99,
+		date: new Date('2022-02-19'),
+	},
+	{
+		id: 'e8',
+		description: 'Another book',
+		amount: 18.99,
+		date: new Date('2022-02-18'),
+	},
 ];
 
 // ExpensesOutput component
@@ -56,7 +74,8 @@ const ExpensesOutput = ({ expenses, expensesPeriod }) => {
 // ExpensesOutput StyleSheet
 const styles = StyleSheet.create({
 	container: {
-		padding: 24,
+		paddingHorizontal: 24,
+		paddingVertical: 0,
 		backgroundColor: GlobalStyles.colors.primary700,
 		// To grow the bgcolor to all the space that available in ExpensesOutput component
 		flex: 1,
