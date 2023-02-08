@@ -2,6 +2,8 @@
 import { Pressable, View, Text, StyleSheet } from 'react-native';
 // Constants
 import { GlobalStyles } from './../../constants/styles';
+// Utils
+import { getForemattedDate } from '../../util/date';
 
 // ExpenseItem component
 const ExpenseItem = ({ description, date, amount }) => {
@@ -15,11 +17,11 @@ const ExpenseItem = ({ description, date, amount }) => {
 					<Text style={[styles.textBase, styles.description]}>
 						{description}
 					</Text>
-					<Text style={styles.textBase}>{date.toString()}</Text>
+					<Text style={styles.textBase}>{getForemattedDate(date)}</Text>
 				</View>
 				{/* Container the contains the expense amount */}
 				<View style={styles.amountContainer}>
-					<Text style={styles.amount}>{amount}</Text>
+					<Text style={styles.amount}>{amount}$</Text>
 				</View>
 			</View>
 		</Pressable>
@@ -31,7 +33,7 @@ const styles = StyleSheet.create({
 	// expenseItem container
 	expenseItem: {
 		padding: 12,
-		marginVertical: 8,
+		marginVertical: 10,
 		backgroundColor: GlobalStyles.colors.primary500,
 		flexDirection: 'row',
 		justifyContent: 'space-between',
@@ -60,6 +62,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		borderRadius: 4,
+		minWidth: 80,
 	},
 	amount: {
 		color: GlobalStyles.colors.primary500,

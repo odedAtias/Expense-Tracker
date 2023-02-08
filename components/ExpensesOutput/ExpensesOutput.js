@@ -75,7 +75,8 @@ const ExpensesOutput = ({ expenses, expensesPeriod }) => {
 const styles = StyleSheet.create({
 	container: {
 		paddingHorizontal: 24,
-		paddingVertical: 0,
+		paddingTop: 12,
+		paddingBottom: 0,
 		backgroundColor: GlobalStyles.colors.primary700,
 		// To grow the bgcolor to all the space that available in ExpensesOutput component
 		flex: 1,
