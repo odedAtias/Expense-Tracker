@@ -7,10 +7,14 @@ import { getForemattedDate } from '../../util/date';
 
 // ExpenseItem component
 const ExpenseItem = ({ description, date, amount }) => {
+	// Expense press handler
+	const handlePressExpense = () => {};
 	// ExpenseItem render
 	return (
 		// We want the expenseItem will be pressable for manage him after tab him
-		<Pressable>
+		<Pressable
+			onPress={handlePressExpense}
+			style={({ pressed }) => pressed && styles.pressed}>
 			<View style={styles.expenseItem}>
 				{/* Container the contains the expense description and the date seperatly */}
 				<View>
@@ -30,6 +34,10 @@ const ExpenseItem = ({ description, date, amount }) => {
 
 // ExpenseItem StyleSheet
 const styles = StyleSheet.create({
+	// pressed style
+	pressed: {
+		opacity: 0.75,
+	},
 	// expenseItem container
 	expenseItem: {
 		padding: 12,
