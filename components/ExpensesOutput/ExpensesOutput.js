@@ -1,8 +1,10 @@
 // RN Core components
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 // Custom components imports
 import ExpensesSummary from './ExpensesSummary';
 import ExpensesList from './ExpensesList';
+// Constants
+import { GlobalStyles } from '../../constants/styles';
 
 // Dummy data
 const DUMMY_EXPENSES = [
@@ -42,7 +44,7 @@ const DUMMY_EXPENSES = [
 const ExpensesOutput = ({ expenses, expensesPeriod }) => {
 	// ExpensesOutput render
 	return (
-		<View>
+		<View style={styles.container}>
 			{/* The summary part of the output (period and total expenses cost) */}
 			<ExpensesSummary expenses={DUMMY_EXPENSES} periodName={expensesPeriod} />
 			{/* List of expenses by period */}
@@ -50,5 +52,15 @@ const ExpensesOutput = ({ expenses, expensesPeriod }) => {
 		</View>
 	);
 };
+
+// ExpensesOutput StyleSheet
+const styles = StyleSheet.create({
+	container: {
+		padding: 24,
+		backgroundColor: GlobalStyles.colors.primary700,
+		// To grow the bgcolor to all the space that available in ExpensesOutput component
+		flex: 1,
+	},
+});
 
 export default ExpensesOutput;
