@@ -7,9 +7,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ManageExpense from './screens/ManageExpense';
 import RecentExpenses from './screens/RecentExpenses';
 import AllExpenses from './screens/AllExpenses';
+import IconButton from './components/UI/IconButton';
 // Constants
 import { GlobalStyles } from './constants/styles';
-// IoniIcons (from vector icons API) import
+// Ionicons (from vector icons API) import
 import { Ionicons } from '@expo/vector-icons';
 
 // Navigators initiallization
@@ -27,6 +28,15 @@ const ExpensesOverview = () => {
 				tabBarStyle: { backgroundColor: GlobalStyles.colors.primary500 },
 				tabBarActiveTintColor: GlobalStyles.colors.accent500, // To emphasize the actived bottom
 				headerTitleAlign: 'center', // To align the title to the center
+				// if we defined tintColor we can get him from the headerRight function argument 'tintColor'
+				headerRight: ({ tintColor }) => (
+					<IconButton
+						icon='add-circle-outline'
+						size={24}
+						color={tintColor}
+						onPress={() => {}}
+					/>
+				),
 			}}>
 			{/* First Screen - Recent Expenses */}
 			<BottomTabs.Screen
