@@ -46,7 +46,7 @@ const ExpensesOutput = ({ expenses, expensesPeriod }) => {
 			{/* The summary part of the output (period and total expenses cost) */}
 			<ExpensesSummary expenses={DUMMY_EXPENSES} periodName={expensesPeriod} />
 			{/* List of expenses by period */}
-			<ExpensesList />
+			<ExpensesList expenses={DUMMY_EXPENSES} />
 		</View>
 	);
 };

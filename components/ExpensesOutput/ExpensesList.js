@@ -1,10 +1,22 @@
 // RN Core components
-import { FlatList } from 'react-native';
+import { FlatList, Text } from 'react-native';
+
+// renderItem function
+const renderExpenseItem = itemData => {
+	return <Text>{itemData.item.description}</Text>;
+};
 
 // ExpensesList component
-const ExpensesList = () => {
+const ExpensesList = ({ expenses }) => {
 	// ExpensesList render
-	return <FlatList />;
+	return (
+		<FlatList
+			data={expenses}
+			renderItem={renderExpenseItem}
+			// To determine the key property of every item will be the id
+			keyExtractor={item => item.id}
+		/>
+	);
 };
 
 export default ExpensesList;
