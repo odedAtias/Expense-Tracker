@@ -22,7 +22,7 @@ const ExpensesOverview = () => {
 	// ExpensesOverview render
 	return (
 		<BottomTabs.Navigator
-			screenOptions={{
+			screenOptions={({ navigation }) => ({
 				headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
 				headerTintColor: 'white', // Changing the title color of the header to white
 				tabBarStyle: { backgroundColor: GlobalStyles.colors.primary500 },
@@ -34,10 +34,10 @@ const ExpensesOverview = () => {
 						icon='add-circle-outline'
 						size={24}
 						color={tintColor}
-						onPress={() => {}}
+						onPress={() => navigation.navigate('ManageExpense')}
 					/>
 				),
-			}}>
+			})}>
 			{/* First Screen - Recent Expenses */}
 			<BottomTabs.Screen
 				name='RecentExpenses'
@@ -75,7 +75,14 @@ export default function App() {
 			{/* Navigation configurations */}
 			<NavigationContainer>
 				{/* The main navigator */}
-				<Stack.Navigator>
+				<Stack.Navigator
+					screenOptions={{
+						headerStyle: {
+							backgroundColor: GlobalStyles.colors.primary500,
+						},
+						headerTintColor: 'white',
+						headerTitleAlign: 'center',
+					}}>
 					{/* First Screen - Nested BottomTab Navigator*/}
 					<Stack.Screen
 						name='ExpensesOverview'
@@ -86,7 +93,14 @@ export default function App() {
 						}}
 					/>
 					{/* Second Screen - ManageExpense */}
-					<Stack.Screen name='ManageExpense' component={ManageExpense} />
+					<Stack.Screen
+						name='ManageExpense'
+						component={ManageExpense}
+						options={{
+							// modal pops up (only in IOS)
+							presentation: 'modal',
+						}}
+					/>
 				</Stack.Navigator>
 			</NavigationContainer>
 		</>

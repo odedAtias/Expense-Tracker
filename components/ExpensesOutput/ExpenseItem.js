@@ -4,11 +4,17 @@ import { Pressable, View, Text, StyleSheet } from 'react-native';
 import { GlobalStyles } from './../../constants/styles';
 // Utils
 import { getForemattedDate } from '../../util/date';
+// Navigation hooks
+import { useNavigation } from '@react-navigation/native';
 
 // ExpenseItem component
 const ExpenseItem = ({ description, date, amount }) => {
+	// navigation object initiallize
+	const navigation = useNavigation();
 	// Expense press handler
-	const handlePressExpense = () => {};
+	const handlePressExpense = () => {
+		navigation.navigate('ManageExpense');
+	};
 	// ExpenseItem render
 	return (
 		// We want the expenseItem will be pressable for manage him after tab him
