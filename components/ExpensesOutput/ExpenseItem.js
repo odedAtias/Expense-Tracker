@@ -8,12 +8,12 @@ import { getForemattedDate } from '../../util/date';
 import { useNavigation } from '@react-navigation/native';
 
 // ExpenseItem component
-const ExpenseItem = ({ description, date, amount }) => {
+const ExpenseItem = ({ id, description, date, amount }) => {
 	// navigation object initiallize
 	const navigation = useNavigation();
 	// Expense press handler
 	const handlePressExpense = () => {
-		navigation.navigate('ManageExpense');
+		navigation.navigate('ManageExpense', { expenseId: id });
 	};
 	// ExpenseItem render
 	return (
