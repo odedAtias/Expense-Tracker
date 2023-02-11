@@ -1,7 +1,12 @@
 // Hooks imports
 import { useLayoutEffect } from 'react';
 // RN Core components
-import { Text } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+// Custom components imports
+import IconButton from './../components/UI/IconButton';
+import Button from '../components/UI/Button';
+// Constants
+import { GlobalStyles } from './../constants/styles';
 // ManageExpense component
 const ManageExpense = ({ route, navigation }) => {
 	const editedExpenseId = route.params?.expenseId;
@@ -14,8 +19,63 @@ const ManageExpense = ({ route, navigation }) => {
 			title: isEditing ? 'Edit Expense' : 'Add Expense',
 		});
 	}, [navigation, isEditing]);
+	// delete expense handler
+	const handleDeleteExpense = () => {};
+	// cancel manage expense handler
+	const handleCancel = () => {};
+	// confirm new expense handler
+	const handleConfirm = () => {};
 	// ManageExpense render
-	return <Text>{editedExpenseId}</Text>;
+	return (
+		<View style={styles.container}>
+			{/* Cancel Button */}
+			<View style={styles.buttons}>
+				<Button mode='flat' onPress={handleCancel} style={styles.button}>
+					Cancel
+				</Button>
+				<Button onPress={handleConfirm} style={styles.button}>
+					{isEditing ? 'Update' : 'Add'}
+				</Button>
+			</View>
+			{/* Delete Button UI */}
+			{isEditing && (
+				<View style={styles.deleteContainer}>
+					<IconButton
+						icon='trash'
+						color={GlobalStyles.colors.error500}
+						size={36}
+						onPress={handleDeleteExpense}
+					/>
+				</View>
+			)}
+		</View>
+	);
 };
+
+// Manage Expense StyleSheet
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		padding: 24,
+		backgroundColor: GlobalStyles.colors.primary800,
+	},
+	deleteContainer: {
+		marginTop: 16,
+		paddingTop: 8,
+		borderTopWidth: 2,
+		borderTopColor: GlobalStyles.colors.primary200,
+		alignItems: 'center',
+	},
+	// Buttons container (to flex them)
+	buttons: {
+		flexDirection: 'row',
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	button: {
+		minWidth: 120,
+		marginHorizontal: 8,
+	},
+});
 
 export default ManageExpense;
