@@ -20,11 +20,17 @@ const ManageExpense = ({ route, navigation }) => {
 		});
 	}, [navigation, isEditing]);
 	// delete expense handler
-	const handleDeleteExpense = () => {};
+	const handleDeleteExpense = () => {
+		navigation.goBack();
+	};
 	// cancel manage expense handler
-	const handleCancel = () => {};
+	const handleCancel = () => {
+		navigation.goBack();
+	};
 	// confirm new expense handler
-	const handleConfirm = () => {};
+	const handleConfirm = () => {
+		navigation.goBack();
+	};
 	// ManageExpense render
 	return (
 		<View style={styles.container}>
