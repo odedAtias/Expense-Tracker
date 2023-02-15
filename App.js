@@ -1,17 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
+
 // Navigation imports
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 // Custom components imports
 import ManageExpense from './screens/ManageExpense';
 import RecentExpenses from './screens/RecentExpenses';
 import AllExpenses from './screens/AllExpenses';
 import IconButton from './components/UI/IconButton';
+
 // Constants
 import { GlobalStyles } from './constants/styles';
+
 // Ionicons (from vector icons API) import
 import { Ionicons } from '@expo/vector-icons';
+
+// Context providers
+import ExpensesContextProvider from './store/expenses-context';
 
 // Navigators initiallization
 const Stack = createNativeStackNavigator();
@@ -72,37 +79,40 @@ export default function App() {
 	return (
 		<>
 			<StatusBar style='auto' />
-			{/* Navigation configurations */}
-			<NavigationContainer>
-				{/* The main navigator */}
-				<Stack.Navigator
-					screenOptions={{
-						headerStyle: {
-							backgroundColor: GlobalStyles.colors.primary500,
-						},
-						headerTintColor: 'white',
-						headerTitleAlign: 'center',
-					}}>
-					{/* First Screen - Nested BottomTab Navigator*/}
-					<Stack.Screen
-						name='ExpensesOverview'
-						component={ExpensesOverview}
-						options={{
-							// Omit the default header of the navigator
-							headerShown: false,
-						}}
-					/>
-					{/* Second Screen - ManageExpense */}
-					<Stack.Screen
-						name='ManageExpense'
-						component={ManageExpense}
-						options={{
-							// modal pops up (only in IOS)
-							presentation: 'modal',
-						}}
-					/>
-				</Stack.Navigator>
-			</NavigationContainer>
+			{/* Our context provider */}
+			<ExpensesContextProvider>
+				{/* Navigation configurations */}
+				<NavigationContainer>
+					{/* The main navigator */}
+					<Stack.Navigator
+						screenOptions={{
+							headerStyle: {
+								backgroundColor: GlobalStyles.colors.primary500,
+							},
+							headerTintColor: 'white',
+							headerTitleAlign: 'center',
+						}}>
+						{/* First Screen - Nested BottomTab Navigator*/}
+						<Stack.Screen
+							name='ExpensesOverview'
+							component={ExpensesOverview}
+							options={{
+								// Omit the default header of the navigator
+								headerShown: false,
+							}}
+						/>
+						{/* Second Screen - ManageExpense */}
+						<Stack.Screen
+							name='ManageExpense'
+							component={ManageExpense}
+							options={{
+								// modal pops up (only in IOS)
+								presentation: 'modal',
+							}}
+						/>
+					</Stack.Navigator>
+				</NavigationContainer>
+			</ExpensesContextProvider>
 		</>
 	);
 }

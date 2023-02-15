@@ -4,3 +4,7 @@ export const getForemattedDate = date => {
 	const year = date.getFullYear();
 	return `${day}/${month}/${year}`;
 };
+
+export const getDateMinusDays = (date, days) => {
+	return new Date(date.getFullYear(), date.getMonth(), date.getDate() - days);
+};
