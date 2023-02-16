@@ -78,7 +78,7 @@ export default function App() {
 	// App Render
 	return (
 		<>
-			<StatusBar style='auto' />
+			<StatusBar style='light' />
 			{/* Our context provider */}
 			<ExpensesContextProvider>
 				{/* Navigation configurations */}
