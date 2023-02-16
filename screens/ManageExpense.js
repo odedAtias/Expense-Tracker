@@ -1,14 +1,19 @@
 // Hooks imports
-import { useLayoutEffect } from 'react';
+import { useLayoutEffect, useContext } from 'react';
 // RN Core components
 import { View, StyleSheet } from 'react-native';
 // Custom components imports
 import IconButton from './../components/UI/IconButton';
 import Button from '../components/UI/Button';
+// Context imports
+import { ExpensesContext } from './../store/expenses-context';
 // Constants
 import { GlobalStyles } from './../constants/styles';
 // ManageExpense component
 const ManageExpense = ({ route, navigation }) => {
+	// Context initialize
+	const expensesContext = useContext(ExpensesContext);
+
 	const editedExpenseId = route.params?.expenseId;
 	// common js trick to convert value into a Boolean (falsy value to false, truthy value to true)
 	const isEditing = !!editedExpenseId;
@@ -21,6 +26,7 @@ const ManageExpense = ({ route, navigation }) => {
 	}, [navigation, isEditing]);
 	// delete expense handler
 	const handleDeleteExpense = () => {
+		expensesContext.deleteExpense(editedExpenseId);
 		navigation.goBack();
 	};
 	// cancel manage expense handler
@@ -29,6 +35,19 @@ const ManageExpense = ({ route, navigation }) => {
 	};
 	// confirm new expense handler
 	const handleConfirm = () => {
+		if (isEditing) {
+			expensesContext.updateExpense(editedExpenseId, {
+				description: 'Test!!!!!',
+				amount: 19.99,
+				date: new Date('2023-02-12'),
+			});
+		} else {
+			expensesContext.addExpense({
+				description: 'Test',
+				amount: 19.99,
+				date: new Date('2023-02-14'),
+			});
+		}
 		navigation.goBack();
 	};
 	// ManageExpense render

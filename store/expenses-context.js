@@ -54,7 +54,7 @@ const DUMMY_EXPENSES = [
 		id: 'e9',
 		description: 'udemy course - RN',
 		amount: 23.99,
-		date: new Date('2023-02-09r'),
+		date: new Date('2023-02-09'),
 	},
 ];
 
@@ -84,7 +84,7 @@ const expensesReducer = (state, action) => {
 			const updatedItem = { ...updatableExpense, ...action.payload.data };
 			// generating new expenses array with the updated expense
 			const updatedExpenses = [...state];
-			updatableExpense[updatableExpenseIndex] = updatedItem;
+			updatedExpenses[updatableExpenseIndex] = updatedItem;
 			// return the new array
 			return updatedExpenses;
 		// DELETE Case
