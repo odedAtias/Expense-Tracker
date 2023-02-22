@@ -112,7 +112,7 @@ const ExpenseForm = ({
 			{/* Error message */}
 			{formIsInvalid && (
 				<Text style={styles.errorText}>
-					Invalid input values - please check your entered data{' '}
+					Invalid input values - please check your entered data
 				</Text>
 			)}
 			{/* Cancel & Confirm Buttons */}
