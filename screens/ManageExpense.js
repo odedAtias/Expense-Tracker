@@ -1,15 +1,16 @@
 // Hooks imports
 import { useLayoutEffect, useContext } from 'react';
 // RN Core components
-import { View, StyleSheet, TextInput } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 // Custom components imports
 import IconButton from './../components/UI/IconButton';
-import Button from '../components/UI/Button';
 import ExpenseForm from '../components/ManageExpenseOutput/ExpenseForm';
 // Context imports
 import { ExpensesContext } from './../store/expenses-context';
 // Constants
 import { GlobalStyles } from './../constants/styles';
+// utils
+import { storeExpense } from './../util/http';
 
 // ManageExpense component
 const ManageExpense = ({ route, navigation }) => {
@@ -44,9 +45,12 @@ const ManageExpense = ({ route, navigation }) => {
 	};
 
 	// confirm new expense handler
-	const handleConfirm = expenseData => {
+	const handleConfirm = async expenseData => {
 		if (isEditing) expensesContext.updateExpense(editedExpenseId, expenseData);
-		else expensesContext.addExpense(expenseData);
+		else {
+			const id = await storeExpense(expenseData);
+			expensesContext.addExpense({ ...expenseData, id: id });
+		}
 		navigation.goBack();
 	};
 
