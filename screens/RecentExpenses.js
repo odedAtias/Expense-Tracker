@@ -27,6 +27,7 @@ const RecentExpenses = () => {
 				const expenses = await fetchExpenses();
 				expensesContext.setExpenses(expenses);
 			} catch (error) {
+				console.log(error);
 				setError('Could not fetch expenses !');
 			}
 
